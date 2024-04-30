@@ -12,7 +12,7 @@ function kiwi.servernotify(text)
 end
 
 function kiwi.rank()
-	local spos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+	--[[local spos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 	wait(0.05)
 	repeat
 		for i,v in pairs(workspace.SecureParts.AdminPads:GetChildren()) do
@@ -22,7 +22,28 @@ function kiwi.rank()
 		wait()
 	until workspace.SecureParts.AdminPads:FindFirstChild(game.Players.LocalPlayer.Name.."'s admin")
 	task.wait()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = spos
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = spos]]
+	local plrcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			local cooldown = .1
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(13.7, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9.7, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(5.7, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1.7, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2.3, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.3, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(10.3, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-14.3, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-18.3, 25.05, 106.492)
+			wait(cooldown)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = plrcframe
 end
 
 function kiwi.tpto(x, y, z)
