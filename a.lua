@@ -13,7 +13,7 @@ end
 
 local function LocalCharacter() return game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() end
 
-local function kiwi.ServerEndpoint()
+function kiwi.ServerEndpoint()
 	local RelevantTable = {}
 
 	for _, v in LocalCharacter():GetChildren() do
