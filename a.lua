@@ -60,7 +60,7 @@ function kiwi.euth()
 				[4] = workspace
 			}
 			task.spawn(function()
-				ServerEndpoint():InvokeServer(unpack(args))
+				kiwi.ServerEndpoint():InvokeServer(unpack(args))
 			end)
 		end
 		wait()
@@ -75,7 +75,7 @@ function kiwi.euth()
 				}
 			}
 			task.spawn(function()
-				ServerEndpoint():InvokeServer(unpack(args))
+				kiwi.ServerEndpoint():InvokeServer(unpack(args))
 			end)
 		end
 end
