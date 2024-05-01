@@ -11,10 +11,40 @@ function kiwi.servernotify(text)
 	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] "..text)
 end
 
+local function LocalCharacter() return game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() end
+
+local function kiwi.ServerEndpoint()
+	local RelevantTable = {}
+
+	for _, v in LocalCharacter():GetChildren() do
+		table.insert(RelevantTable, v)
+	end
+
+	for _, v in game.Players.LocalPlayer.Backpack:GetChildren() do
+		table.insert(RelevantTable, v)
+	end
+
+
+	for i, v in pairs(RelevantTable) do
+		if v:IsA('Tool') and v.Name == 'Building Tools' and #v:GetChildren() > 2 then
+			return v:WaitForChild('SyncAPI'):WaitForChild('ServerEndpoint') -- this section is for regular f3x games where remotes are stored in the tool
+		end
+	end
+
+	for i, v in pairs(RelevantTable) do
+		if v:IsA('Folder') and v:FindFirstChild('SyncAPI') then
+			return v:WaitForChild('SyncAPI'):WaitForChild('ServerEndpoint')
+		end
+	end
+
+	return nil
+end
+
+
 function kiwi.euth()
 	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] Attempting To Freeze The Server...")
 		game.Players:Chat(":f3x")
-		wait(3)
+		wait(1)
 		-- wait(.1) until game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI:FindFirstChild("ServerEndpoint")
 		local PartTable = {}
 		game.Workspace.ChildAdded:Connect(function(v)
@@ -32,7 +62,7 @@ function kiwi.euth()
 				[4] = workspace
 			}
 			task.spawn(function()
-				game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI.ServerEndpoint:InvokeServer(unpack(args))
+				ServerEndpoint():InvokeServer(unpack(args))
 			end)
 		end
 		wait()
@@ -47,7 +77,7 @@ function kiwi.euth()
 				}
 			}
 			task.spawn(function()
-				game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI.ServerEndpoint:InvokeServer(unpack(args))
+				ServerEndpoint():InvokeServer(unpack(args))
 			end)
 		end
 end
