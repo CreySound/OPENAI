@@ -11,12 +11,10 @@ function kiwi.servernotify(text)
 	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] "..text)
 end
 
-local function LocalCharacter() return game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:Wait() end
-
 function kiwi.ServerEndpoint()
 	local RelevantTable = {}
 
-	for _, v in LocalCharacter():GetChildren() do
+	for _, v in game.Players.LocalPlayer.Character:GetChildren() do
 		table.insert(RelevantTable, v)
 	end
 
