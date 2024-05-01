@@ -11,18 +11,48 @@ function kiwi.servernotify(text)
 	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] "..text)
 end
 
-function kiwi.rank()
-	--[[local spos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-	wait(0.05)
-	repeat
-		for i,v in pairs(workspace.SecureParts.AdminPads:GetChildren()) do
-			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Head.CFrame
-			wait()
+function kiwi.euth()
+	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] Attempting To Freeze The Server...")
+		game.Players:Chat(":f3x")
+		wait(3)
+		-- wait(.1) until game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI:FindFirstChild("ServerEndpoint")
+		local PartTable = {}
+		game.Workspace.ChildAdded:Connect(function(v)
+			if v:IsA('Part') then
+				table.insert(PartTable,v)
+				print(v.Name)
+			end
+		end)
+
+		for i = 1, 3500 do
+			local args = {
+				[1] = "CreatePart",
+				[2] = "Normal",
+				[3] = CFrame.new(Vector3.new(-112.61819458007812, 20.000003814697266, 80.5723876953125), Vector3.new(-0, -0, -1)),
+				[4] = workspace
+			}
+			task.spawn(function()
+				game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI.ServerEndpoint:InvokeServer(unpack(args))
+			end)
 		end
 		wait()
-	until workspace.SecureParts.AdminPads:FindFirstChild(game.Players.LocalPlayer.Name.."'s admin")
-	task.wait()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = spos]]
+		for i,v in pairs(PartTable) do
+			local args = {
+				[1] = "SyncAnchor",
+				[2] = {
+					[1] = {
+						["Part"] = v,
+						["Anchored"] = false
+					}
+				}
+			}
+			task.spawn(function()
+				game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI.ServerEndpoint:InvokeServer(unpack(args))
+			end)
+		end
+end
+
+function kiwi.rank()
 	local plrcframe = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 			local cooldown = .1
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(13.7, 25.05, 106.492)
