@@ -1,4 +1,4 @@
-local kiwi = {}
+xlocal kiwi = {}
 function kiwi.runc(code)
 	game.Players:Chat(code)
 end
@@ -40,7 +40,7 @@ end
 
 
 function kiwi.euth()
-	kiwi.runc(":chatnotifyc all 0 200 0 [🥝] Attempting To Freeze The Server...")
+	--kiwi.runc(":chatnotifyc all 0 200 0 [🥝] Attempting To Freeze The Server...")
 		game.Players:Chat(":f3x")
 		wait(1)
 		-- wait(.1) until game:GetService("Players").LocalPlayer.Backpack.Folder.SyncAPI:FindFirstChild("ServerEndpoint")
